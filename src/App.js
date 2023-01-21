@@ -3,6 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import Carousel from './components/Carousel/Carousel'
 import Card from './components/Card/Card';
+import Main from './components/Main/Main';
+import Button from './components/UI/Button';
 
 function App() {
 
@@ -32,7 +34,8 @@ function App() {
     <div>
       <Navbar/>
       <Carousel/>
-      <header className="App-header bg-secondary">
+      <Main>
+        <header className="App-header bg-secondary">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -46,8 +49,8 @@ function App() {
           Learn React
 
         </a>
-      </header>
-      { cards.map(({titulo, descripcion, img, btnText, btnClassName}, index) => (
+        </header>
+          { cards.map(({titulo, descripcion, img, btnText, btnClassName}, index) => (
             <Card 
             key={index}
             titulo={titulo}
@@ -55,8 +58,10 @@ function App() {
             img={img}
             btnText={btnText}
             btnClassName={btnClassName}
-            />)
+        />)
       ) }
+      </Main>
+      
       {/*<Card
         titulo={"FIFA WORD CUP"}
         descripcion={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae consectetur, totam temporibus incidunt commodi"}
