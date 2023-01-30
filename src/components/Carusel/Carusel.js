@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Carousel = () => {
+const Carusel = () => {
   return (
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
   <div className="carousel-inner">
@@ -26,4 +26,4 @@ const Carousel = () => {
   )
 }
 
-export default Carousel
+export default Carusel

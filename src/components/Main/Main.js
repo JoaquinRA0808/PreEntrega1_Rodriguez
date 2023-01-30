@@ -1,18 +1,19 @@
-import React, { Children } from "react"
-import Carousel from "../Carousel/Carousel"
-import Navbar from "../Navbar/Navbar"
+import React from 'react'
+import Carusel from '../Carusel/Carusel'
+import Navbar from '../Navbar/Navbar'
 
 const Main = (props) => {
 
-        const {children} = props
-    return (
-        <main>
-            <Carousel/>
-            <Navbar/>
-            {children}
-            <h1>Yo soy el footer </h1>
-        </main>
-    )
+    const{children} = props
+  return (
+    <main>
+        <Navbar/>
+        <Carusel/>
+        {children}
+
+        <h1>Yo soy el Footer</h1>
+    </main>
+  )
 }
 
 export default Main
