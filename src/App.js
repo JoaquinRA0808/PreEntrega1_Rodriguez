@@ -58,6 +58,7 @@ function App() {
               img={img}
               btnText={btnText}
               btnClassName={btnClassName}
+              Navbar={Navbar}
               />)
           )}
       </Main>
