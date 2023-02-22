@@ -8,7 +8,7 @@ const Main = (props) => {
   return (
     <main>
         <Navbar/>
-        <Carusel/>
+
         {children}
 
         <h1>Yo soy el Footer</h1>
