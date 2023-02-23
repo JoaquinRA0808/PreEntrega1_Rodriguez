@@ -3,7 +3,7 @@ import Button from '../UI/Button'
 
 const Card = (props) => {
 
-  console.log("props", props)
+  //console.log("props", props)
 
   const {titulo, descripcion,img,btnText,btnClassName} = props //es un objeto
   return (

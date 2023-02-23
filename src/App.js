@@ -7,13 +7,14 @@ import Main from './components/Main/Main';
 import Counter from './components/Counter/Counter';
 import { useState, useEffect} from 'react';
 import config from './config.json'
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
 
   const [show, setShow] = useState(true)
   const toggle = () => setShow(!show)
-
   const [cards, setCards] = useState([])
+  const [loading, setLoading] = useState(false)
 
   //let styles = {
   //  color:'white',
@@ -31,14 +32,15 @@ function App() {
 
 
   const getCards = () => {
+    setLoading(true)
     const operacion = new Promise ((resolve, reject) => {
       setTimeout(() => {
 
-        //resolve({
-        //  status:200,
-        //  data:config.cards
-        //})
-        reject("algo salio mal")
+        resolve({
+          status:200,
+          data:config.cards
+        })
+        //reject("algo salio mal")
 
       },2000)
       
@@ -51,6 +53,9 @@ function App() {
       console.log(resultado)
     }).catch((err) => {
       console.log(err, " ERROR EN EL CATCH")
+      alert("Algo fallo")
+    }).finally(() => {
+      setLoading(false)
     })
   }
   
@@ -64,14 +69,10 @@ function App() {
   return (
     <div>
       <Main>
-        {/*<Carusel/>*/}
-          <Counter nombre="Componente 1"/>
-          <Counter nombre="Componente 2"/>
-          <Counter nombre="Componente 3"/>
 
-        <div className='d-flex'>
-          
-          {/*cards.map(
+        {loading && <Spinner/>}
+        {<div className='d-flex justify-content-center'>
+          {!loading && cards.length > 0 ? cards.map(
             ({titulo, descripcion, img, btnText, btnClassName}, index) => (
               <Card
                 key={index}
@@ -80,38 +81,24 @@ function App() {
                 img={img}
                 btnText={btnText}
                 btnClassName={btnClassName}
-                />)
-            )*/}
+              />
+            )
+          )
+        : !loading && 
+        cards.length < 1 (
+          <h1 className='text-danger text-center'>UPS FALLO LA CARGA</h1> 
+        )}
+        </div>}
 
-        </div>
-        {cards.map(
-          ({titulo, descripcion, img, btnText, btnClassName}, index) => (
-            <Card
-              key={index}
-              titulo={titulo}
-              descripcion={descripcion}
-              img={img}
-              btnText={btnText}
-              btnClassName={btnClassName}
-              Navbar={Navbar}
-              />)
-          )}
+        {/*<Carusel/>*/}
+        {/* show ? <Counter /> : null */}
+          {/* <Counter/>
+          <Counter/> */}
+
+        {/*<button onClick={toggle} > {show ? " Ocultar" : " Mostrar"}</button>*/}
+        
+        
       </Main>
-      
-      
-      {/*<Card
-        titulo={"FIFA WORD CUP"}
-        descripcion={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae consectetur, totam temporibus incidunt commodi"}
-        img={"https://img.lagaceta.com.ar/fotos/notas/2022/10/11/copa-mundo-actual-se-estreno-mundial-alemania-1974-964951-113135.jpg"}
-        btnText={"Ver Más"}
-        btnClassName="btn btn-danger fs-1"
-      />
-        <Card
-        titulo={"CHAMPIONS LEAGUE"}
-        descripcion={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quae consectetur, totam temporibus incidunt commodi"}
-        img={"https://caracoltv.brightspotcdn.com/dims4/default/3afdd34/2147483647/strip/true/crop/2048x1366+0+0/resize/1000x667!/quality/90/?url=http%3A%2F%2Fcaracol-brightspot.s3.amazonaws.com%2F39%2Ff0%2F4b22259e409d9eb185d79fdefa2d%2Ftrofeo-champions.jpg"}
-        btnText={"Eliminar"}
-      />*/}
     </div>
   );
 }
