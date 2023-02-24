@@ -1,13 +1,26 @@
-import ItemListContainer from "./components/ItemListContainer";
-import Navbar from "./components/Navbar";
-import CarritoContextProvider from "./context/CarritoContext";
+import './App.css';
+import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './Components/ItemDetail/ItemDetail';
+import Cart from './Components/Cart/Cart';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './Components/NavBar/NavBar';
+import { CartProvider } from './Context/CartContext';
 
 function App() {
   return (
-    <CarritoContextProvider>
-      <Navbar/>
-      <ItemListContainer/>
-    </CarritoContextProvider>
+    <div className='App'>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route exact path='/' element={<ItemListContainer />} />
+            <Route exact path='/category/:id' element={<ItemListContainer />} />
+            <Route exact path='/item/:id' element={<ItemDetailContainer />} />
+            <Route exact path='/cart' element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </div>
   );
 }
 
