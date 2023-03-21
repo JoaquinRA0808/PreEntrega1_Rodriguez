@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import useFirebase from '../../hook/useFirebase';
 import { CartContext } from '../../Context/CartProvider';
 import ItemCount from '../ItemCount/ItemCount';
 import './styles.css';
@@ -7,13 +8,16 @@ import './styles.css';
 const ItemDetail = ({ product }) => {
   const { title, description, price, image, quantity } = product;
   const { addItem, selectedItems, updateQuantity } = useContext(CartContext);
+  const { products, getProducts, filterProducts, filteredProducts } = useFirebase();
   let location = useLocation();
 
-  React.useEffect(() => {
-    updateQuantity(1);
-  }, [location]);
+  useEffect(() => {
+    getProducts(id);
+  }, []);
 
-  return (
+  return <ItemDetail id={id} />;
+
+  /*return (
     <div className='details__container'>
       <div className='details__wrapper'>
         <div className='product__picture col-4'>
@@ -39,7 +43,7 @@ const ItemDetail = ({ product }) => {
         </div>
       </div>
     </div>
-  );
+  );*/
 };
 
 export default ItemDetail;
